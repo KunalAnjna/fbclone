@@ -1,0 +1,363 @@
+  /* Reset and base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: linear-gradient(135deg, #1a1a1a, #242424);
+    color: #e4e6eb;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: thin;
+    scrollbar-color: #6366f1 transparent;
+    transition: background-color 0.3s ease;
+  }
+  /* Scrollbar for WebKit */
+  body::-webkit-scrollbar {
+    width: 8px;
+  }
+  body::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  body::-webkit-scrollbar-thumb {
+    background-color: #6366f1;
+    border-radius: 10px;
+    border: 2px solid transparent;
+  }
+
+  /* Container layout */
+  .app-container {
+    flex: 1 0 auto;
+    display: grid;
+    grid-template-columns: 280px 1fr 320px;
+    grid-template-rows: 64px 1fr auto;
+    grid-template-areas:
+      "header header header"
+      "sidebar main rightpanel"
+      "footer footer footer";
+    min-height: calc(100vh - 64px);
+    background-color: #18191a;
+  }
+
+  /* Header */
+  header {
+    grid-area: header;
+    position: sticky;
+    top: 0;
+    height: 64px;
+    background: rgba(24, 25, 26, 0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    display: flex;
+    align-items: center;
+    padding: 0 32px;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+    z-index: 1000;
+    user-select: none;
+  }
+  .header-brand {
+    font-weight: 700;
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    color: #6366f1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .header-brand .material-icons {
+    font-size: 32px;
+  }
+  .header-spacer {
+    flex-grow: 1;
+  }
+  .theme-toggle-btn {
+    background: transparent;
+    border: none;
+    color: #6366f1;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 0;
+    transition: color 0.3s ease;
+  }
+  .theme-toggle-btn:focus-visible {
+    outline-offset: 4px;
+    outline: 2px solid #6366f1;
+  }
+  .theme-toggle-btn:hover {
+    color: #a5b4fc;
+  }
+
+  /* Sidebar */
+  aside.sidebar {
+    grid-area: sidebar;
+    background: rgba(24, 25, 26, 0.6);
+    backdrop-filter: saturate(200%) blur(20px);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-right: 1px solid rgba(99, 102, 241, 0.2);
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    user-select: none;
+    color: #cbd5e1;
+    border-radius: 12px;
+    padding: 10px 12px;
+    transition: background-color 0.3s ease, color 0.25s ease;
+  }
+  .nav-item:hover,
+  .nav-item:focus-visible {
+    background-color: rgba(99, 102, 241, 0.3);
+    color: #6366f1;
+    outline: none;
+  }
+  .nav-item .material-icons {
+    font-size: 24px;
+    color: inherit;
+  }
+  .badge {
+    margin-left: auto;
+    background-color: #ef4444;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 9999px;
+    padding: 4px 8px;
+    user-select: none;
+  }
+
+  /* Right panel - Facebook features branding */
+  aside.rightpanel {
+    grid-area: rightpanel;
+    padding: 32px;
+    background: rgba(24, 25, 26, 0.6);
+    backdrop-filter: saturate(200%) blur(20px);
+    border-left: 1px solid rgba(99, 102, 241, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #d1d5db;
+    text-align: center;
+  }
+  .rightpanel h2 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800;
+    margin-bottom: 16px;
+    color: #6366f1;
+  }
+  .rightpanel p {
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+  .rightpanel img {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.4);
+  }
+
+  /* Main content - login form */
+  main {
+    grid-area: main;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+  }
+  .login-card {
+    background: rgba(24, 25, 26, 0.8);
+    backdrop-filter: saturate(180%) blur(30px);
+    border-radius: 20px;
+    padding: 48px 48px 64px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 20px 40px rgb(99 102 241 / 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .login-header {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    color: #6366f1;
+    font-weight: 900;
+    user-select: none;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 700;
+    font-size: clamp(0.85rem, 1vw, 1rem);
+    margin-bottom: 4px;
+    color: #cbd5e1;
+  }
+  input[type="email"],
+  input[type="password"] {
+    background-color: #1c1e21;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 14px 18px;
+    color: #e4e6eb;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    border-color: #6366f1;
+    outline: none;
+  }
+  input[type="email"].error,
+  input[type="password"].error {
+    border-color: #ef4444;
+  }
+  .error-msg {
+    color: #ef4444;
+    font-size: 0.85rem;
+    margin-top: 0px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    user-select: none;
+  }
+  .btn-login {
+    background-color: #6366f1;
+    color: #e4e6eb;
+    border: none;
+    padding: 16px 0;
+    font-weight: 700;
+    font-size: 1.25rem;
+    border-radius: 12px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .btn-login:hover,
+  .btn-login:focus-visible {
+    background-color: #4f46e5;
+    box-shadow: 0 0 12px #6366f1;
+    outline: none;
+  }
+  .btn-login:disabled {
+    background-color: #4b5563;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+  .form-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #a1a5b1;
+    font-weight: 600;
+  }
+  .form-footer a {
+    color: #6366f1;
+    text-decoration: none;
+  }
+  .form-footer a:hover,
+  .form-footer a:focus-visible {
+    color: #9ca3af;
+    outline: none;
+    text-decoration: underline;
+  }
+
+  /* Footer */
+  footer {
+    grid-area: footer;
+    background: rgba(24, 25, 26, 0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    color: #9ca3af;
+    padding: 16px 48px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 32px;
+    font-size: 0.9rem;
+    justify-content: center;
+    user-select: none;
+  }
+  footer a {
+    color: #6366f1;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  footer a:hover,
+  footer a:focus-visible {
+    color: #9ca3af;
+    outline: none;
+    text-decoration: underline;
+  }
+
+  /* Accessibility focus outline for keyboard nav */
+  :focus-visible {
+    outline-offset: 4px;
+    outline: 3px solid #6366f1;
+  }
+
+  /* Responsive */
+  @media (max-width: 1023px) {
+    .app-container {
+      grid-template-columns: 280px 1fr;
+      grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+      min-height: auto;
+    }
+    aside.rightpanel {
+      display: none;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .app-container {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "header"
+        "main"
+        "footer";
+      min-height: auto;
+    }
+    aside.sidebar {
+      position: fixed;
+      top: 64px;
+      left: -280px;
+      width: 280px;
+      height: calc(100vh - 64px);
+      background: rgba(24, 25, 26, 0.95);
+      padding-top: 32px;
+      padding-left: 16px;
+      padding-right: 16px;
+      padding-bottom: 32px;
+      transition: left 0.3s ease;
+      z-index: 2000;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    aside.sidebar.show {
+      left: 0;
+    }
+    main {
+      padding: 20px;
+    }
+    header .header-brand {
+      gap: 4px;
+      font-size: 1rem;
+    }
+    .header-spacer {
+      flex-grow: 0;
+    }
+  }
