@@ -1,7 +1,4 @@
-# fbclone
-Here's a sample README.md file for your fbclone repository. You can copy this content into a new README.md file at the root of your repo and customize it further as needed.
 
----
 
 # fbclone
 
